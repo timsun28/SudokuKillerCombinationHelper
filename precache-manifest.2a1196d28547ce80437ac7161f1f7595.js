@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "25933f71e1471401ca2dbae139ed4139",
+    "revision": "a8bf003d4d0d7eb5e04e8dfcd590d464",
     "url": "/SudokuKillerCombinationHelper/index.html"
   },
   {
-    "revision": "309847cdade24da7a605",
+    "revision": "049ff3a286f631af733d",
     "url": "/SudokuKillerCombinationHelper/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "9d8694ed8bb9d5281ae8",
-    "url": "/SudokuKillerCombinationHelper/static/js/2.260f8f98.chunk.js"
+    "revision": "d99112c790c682ff5c4c",
+    "url": "/SudokuKillerCombinationHelper/static/js/2.6201c09c.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/SudokuKillerCombinationHelper/static/js/2.260f8f98.chunk.js.LICENSE.txt"
+    "url": "/SudokuKillerCombinationHelper/static/js/2.6201c09c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "309847cdade24da7a605",
-    "url": "/SudokuKillerCombinationHelper/static/js/main.4ecaf1f7.chunk.js"
+    "revision": "049ff3a286f631af733d",
+    "url": "/SudokuKillerCombinationHelper/static/js/main.eba71d07.chunk.js"
   },
   {
     "revision": "f951d635d0d5540b9fda",
