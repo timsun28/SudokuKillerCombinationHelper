@@ -3,7 +3,9 @@ This app can be used to quickly find all possible combinations for a cage.
 The user can input the required sum, amount of boxes to find all possible combinations.
 The user could also add required or invalid numbers to filter the result.
 
-The app is a Progressive Web App, so it can be saved on the homescreen for later offline use. 
+The app is a Progressive Web App, so it can be saved on the homescreen for later offline use.
+
+####Checkout the [demo](https://timsun28.github.io/SudokuKillerCombinationHelper/)! 
 
 
 ## Run it by yourself:
