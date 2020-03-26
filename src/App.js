@@ -94,7 +94,7 @@ export default class App extends Component {
                     marks
                     valueLabelDisplay={'on'}
                     aria-labelledby={"discrete-slider-always"}
-                    onChange={(e, value) => this.handleChangeSlider(value, 'amountBoxes')}
+                    onChangeCommitted={(e, value) => this.handleChangeSlider(value, 'amountBoxes')}
                 />
                 <Typography gutterBottom>
                     Sum of boxes:
@@ -107,7 +107,7 @@ export default class App extends Component {
                     marks
                     valueLabelDisplay={'on'}
                     aria-labelledby={"discrete-slider-always"}
-                    onChange={(e, value) => this.handleChangeSlider(value, 'sumBoxes')}
+                    onChangeCommitted={(e, value) => this.handleChangeSlider(value, 'sumBoxes')}
                 />
                 <FormControl component="fieldset">
                     <Typography gutterBottom>
