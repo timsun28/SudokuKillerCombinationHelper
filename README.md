@@ -5,7 +5,7 @@ The user could also add required or invalid numbers to filter the result.
 
 The app is a Progressive Web App, so it can be saved on the homescreen for later offline use.
 
-####Checkout the [demo](https://timsun28.github.io/SudokuKillerCombinationHelper/)! 
+#### Checkout the [demo](https://timsun28.github.io/SudokuKillerCombinationHelper/)! 
 
 
 ## Run it by yourself:
