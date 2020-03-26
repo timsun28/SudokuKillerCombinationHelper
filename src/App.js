@@ -6,29 +6,31 @@ import {Checkbox, FormGroup, FormControlLabel, FormControl} from "@material-ui/c
 
 export default class App extends Component {
     state = {amountBoxes: 3, sumBoxes: 19, required: [], invalid: [], possibilities: []};
+
     constructor() {
         super();
         this.state.possibilities = this.getPossibilities();
     }
+
     getPossibilities = () => {
         const size = this.state.amountBoxes;
-        const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const sudoku_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-        function p(t, i) {
+        function getAllCombinations(t, i) {
             if (t.length === size) {
                 allPossibilities.push(t);
                 return;
             }
-            if (i + 1 > array.length) {
+            if (i + 1 > sudoku_numbers.length) {
                 return;
             }
-            p(t.concat(array[i]), i + 1);
-            p(t, i + 1);
+            getAllCombinations(t.concat(sudoku_numbers[i]), i + 1);
+            getAllCombinations(t, i + 1);
         }
 
         const allPossibilities = [];
         let correctPossibilities = [];
-        p([], 0);
+        getAllCombinations([], 0);
 
         allPossibilities.forEach((res) => {
             if (res.reduce((a, b) => a + b, 0) === this.state.sumBoxes) {
@@ -52,24 +54,29 @@ export default class App extends Component {
         this.setState({[id]: value});
         this.setState({possibilities: this.getPossibilities()});
     };
-    handleChangeArray = (value, number, id) => {
-        const currentArray = this.state[id];
-        if (value) {
+    handleChangeCheckboxes = (isChecked, number, type) => {
+        const currentArray = this.state[type];
+        if (isChecked) {
             currentArray.push(number);
         } else {
             const index = currentArray.indexOf(number);
             if (index !== -1) currentArray.splice(index, 1);
         }
-        this.setState({[id]: currentArray});
+        this.setState({[type]: currentArray});
         this.setState({possibilities: this.getPossibilities()});
     };
-    getCheckboxes = (id) => {
+    getCheckboxes = (type) => {
         const checkboxes = [];
         for (let i = 1; i < 10; i++) {
             checkboxes.push(<FormControlLabel
                 value="top"
-                control={<Checkbox color="primary"
-                                   onChange={(e, value) => this.handleChangeArray(e.target.checked, i, id)}/>}
+                control={
+                    <Checkbox color="primary"
+                              onChange={(e) =>
+                                  this.handleChangeCheckboxes(e.target.checked, i, type)
+                              }
+                    />
+                }
                 label={i}
                 key={i}
                 labelPlacement="bottom"
@@ -77,6 +84,18 @@ export default class App extends Component {
         }
         return checkboxes;
     };
+
+    getCombinationCards = () => {
+        return this.state.possibilities.map(data => {
+            return (
+                <Grid item xs={4}>
+                    <Paper style={{padding: 15, textAlign: 'center'}}
+                           key={data.key}>{data.label}</Paper>
+                </Grid>
+            );
+        })
+    };
+
     render() {
         return (
             <Container fixed={false} maxWidth={'md'}>
@@ -127,13 +146,7 @@ export default class App extends Component {
                 </FormControl>
                 <div style={{flexGrow: 1, paddingTop: 20}}>
                     <Grid container spacing={3}>
-                        {this.state.possibilities.map(data => {
-                            return (
-                                <Grid item xs={4}>
-                                    <Paper style={{padding: 15, textAlign: 'center'}} key={data.key}>{data.label}</Paper>
-                                </Grid>
-                            );
-                        })}
+                        {this.getCombinationCards()}
                     </Grid>
                 </div>
             </Container>
