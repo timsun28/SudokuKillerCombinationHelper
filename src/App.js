@@ -15,8 +15,9 @@ export default class App extends Component {
     getPossibilities = () => {
         const size = this.state.amountBoxes;
         const sudoku_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const allPossibilities = [];
 
-        function getAllCombinations(t, i) {
+        function setAllCombinations(t, i) {
             if (t.length === size) {
                 allPossibilities.push(t);
                 return;
@@ -24,14 +25,13 @@ export default class App extends Component {
             if (i + 1 > sudoku_numbers.length) {
                 return;
             }
-            getAllCombinations(t.concat(sudoku_numbers[i]), i + 1);
-            getAllCombinations(t, i + 1);
+            setAllCombinations(t.concat(sudoku_numbers[i]), i + 1);
+            setAllCombinations(t, i + 1);
         }
 
-        const allPossibilities = [];
-        let correctPossibilities = [];
-        getAllCombinations([], 0);
+        setAllCombinations([], 0);
 
+        let correctPossibilities = [];
         allPossibilities.forEach((res) => {
             if (res.reduce((a, b) => a + b, 0) === this.state.sumBoxes) {
                 correctPossibilities.push(res)
