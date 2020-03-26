@@ -5,7 +5,7 @@ import {Paper, Typography} from "@material-ui/core";
 import {Checkbox, FormGroup, FormControlLabel, FormControl} from "@material-ui/core";
 
 export default class App extends Component {
-    state = {amountBoxes: 3, sumBoxes: 19, required: [], invalid: [], possibilities: []};
+    state = {amountBoxes: 3, sumBoxes: 19, required: [], invalid: [], possibilities: [], sudokuNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9]};
 
     constructor() {
         super();
@@ -14,7 +14,7 @@ export default class App extends Component {
 
     getPossibilities = () => {
         const size = this.state.amountBoxes;
-        const sudoku_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const sudokuNumbers = this.state.sudokuNumbers;
         const allPossibilities = [];
 
         function setAllCombinations(t, i) {
@@ -22,10 +22,10 @@ export default class App extends Component {
                 allPossibilities.push(t);
                 return;
             }
-            if (i + 1 > sudoku_numbers.length) {
+            if (i + 1 > sudokuNumbers.length) {
                 return;
             }
-            setAllCombinations(t.concat(sudoku_numbers[i]), i + 1);
+            setAllCombinations(t.concat(sudokuNumbers[i]), i + 1);
             setAllCombinations(t, i + 1);
         }
 
@@ -66,23 +66,21 @@ export default class App extends Component {
         this.setState({possibilities: this.getPossibilities()});
     };
     getCheckboxes = (type) => {
-        const checkboxes = [];
-        for (let i = 1; i < 10; i++) {
-            checkboxes.push(<FormControlLabel
+        return this.state.sudokuNumbers.map((number) => {
+            return <FormControlLabel
                 value="top"
                 control={
                     <Checkbox color="primary"
                               onChange={(e) =>
-                                  this.handleChangeCheckboxes(e.target.checked, i, type)
+                                  this.handleChangeCheckboxes(e.target.checked, number, type)
                               }
                     />
                 }
-                label={i}
-                key={i}
+                label={number}
+                key={number}
                 labelPlacement="bottom"
-            />)
-        }
-        return checkboxes;
+            />
+        });
     };
 
     getCombinationCards = () => {
