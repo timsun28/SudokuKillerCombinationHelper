@@ -46,7 +46,7 @@ export default class App extends Component {
             correctPossibilities = correctPossibilities.filter((el) => !el.includes(req));
         });
         correctPossibilities = correctPossibilities.map((pos, index) => {
-            return {possibility: pos, key: index, style: 'primary', label: pos.join(' ')}
+            return {possibility: pos, key: index, style: 'primary', label: pos.join(' '), color: "#3f51b5"}
         });
         return correctPossibilities;
     };
@@ -65,6 +65,14 @@ export default class App extends Component {
         this.setState({[type]: currentArray});
         this.setState({possibilities: this.getPossibilities()});
     };
+
+    toggleBackgroundColorPaper = (paperId) => {
+        const currentPossibilities = this.state.possibilities;
+        const clickedPossibilityIndex = currentPossibilities.findIndex(pos => {return pos.key === paperId});
+        currentPossibilities[clickedPossibilityIndex].color = currentPossibilities[clickedPossibilityIndex].color === '#3f51b5' ? '#AA3939' : '#3f51b5';
+        this.setState({possibilities: currentPossibilities})
+    };
+
     getCheckboxes = (type) => {
         return this.state.sudokuNumbers.map((number) => {
             return <FormControlLabel
@@ -87,8 +95,12 @@ export default class App extends Component {
         return this.state.possibilities.map(data => {
             return (
                 <Grid item xs={4}>
-                    <Paper style={{padding: 15, textAlign: 'center'}}
-                           key={data.key}>{data.label}</Paper>
+                    <Paper style={{color:"white", backgroundColor: data.color, padding: 15, textAlign: 'center'}}
+                           key={data.key}
+                           onClick={() => {this.toggleBackgroundColorPaper(data.key)}}
+                    >
+                        <b>{data.label}</b>
+                    </Paper>
                 </Grid>
             );
         })
