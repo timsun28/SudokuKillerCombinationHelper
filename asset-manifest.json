@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/SudokuKillerCombinationHelper/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/SudokuKillerCombinationHelper/static/js/main.b62bdab3.chunk.js",
-    "main.js.map": "/SudokuKillerCombinationHelper/static/js/main.b62bdab3.chunk.js.map",
+    "main.js": "/SudokuKillerCombinationHelper/static/js/main.f1288382.chunk.js",
+    "main.js.map": "/SudokuKillerCombinationHelper/static/js/main.f1288382.chunk.js.map",
     "runtime-main.js": "/SudokuKillerCombinationHelper/static/js/runtime-main.20494cb3.js",
     "runtime-main.js.map": "/SudokuKillerCombinationHelper/static/js/runtime-main.20494cb3.js.map",
     "static/js/2.6201c09c.chunk.js": "/SudokuKillerCombinationHelper/static/js/2.6201c09c.chunk.js",
     "static/js/2.6201c09c.chunk.js.map": "/SudokuKillerCombinationHelper/static/js/2.6201c09c.chunk.js.map",
     "index.html": "/SudokuKillerCombinationHelper/index.html",
-    "precache-manifest.451a253e2f209a9c64e0d9614abf63ec.js": "/SudokuKillerCombinationHelper/precache-manifest.451a253e2f209a9c64e0d9614abf63ec.js",
+    "precache-manifest.177ab963bf71dacf650295e3e023d3af.js": "/SudokuKillerCombinationHelper/precache-manifest.177ab963bf71dacf650295e3e023d3af.js",
     "service-worker.js": "/SudokuKillerCombinationHelper/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/SudokuKillerCombinationHelper/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.6201c09c.chunk.js.LICENSE.txt": "/SudokuKillerCombinationHelper/static/js/2.6201c09c.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.20494cb3.js",
     "static/js/2.6201c09c.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.b62bdab3.chunk.js"
+    "static/js/main.f1288382.chunk.js"
   ]
 }
