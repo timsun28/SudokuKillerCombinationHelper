@@ -3,6 +3,7 @@ import {Container, Grid} from "@material-ui/core";
 import {Slider} from "@material-ui/core";
 import {Paper, Typography} from "@material-ui/core";
 import {Checkbox, FormGroup, FormControlLabel, FormControl} from "@material-ui/core";
+import {LinearProgress} from "@material-ui/core";
 
 export default class App extends Component {
     state = {amountBoxes: 3, sumBoxes: 19, required: [], invalid: [], possibilities: [], sudokuNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9]};
@@ -69,7 +70,7 @@ export default class App extends Component {
     toggleBackgroundColorPaper = (paperId) => {
         const currentPossibilities = this.state.possibilities;
         const clickedPossibilityIndex = currentPossibilities.findIndex(pos => {return pos.key === paperId});
-        currentPossibilities[clickedPossibilityIndex].color = currentPossibilities[clickedPossibilityIndex].color === '#3f51b5' ? '#AA3939' : '#3f51b5';
+        currentPossibilities[clickedPossibilityIndex].hidden = !currentPossibilities[clickedPossibilityIndex].hidden;
         this.setState({possibilities: currentPossibilities})
     };
 
@@ -93,9 +94,10 @@ export default class App extends Component {
 
     getCombinationCards = () => {
         return this.state.possibilities.map(data => {
+            const color = data.hidden ? '#AA3939' : '#3f51b5'
             return (
                 <Grid item xs={4}>
-                    <Paper style={{color:"white", backgroundColor: data.color, padding: 15, textAlign: 'center'}}
+                    <Paper style={{color:"white", backgroundColor: color, padding: 15, textAlign: 'center'}}
                            key={data.key}
                            onClick={() => {this.toggleBackgroundColorPaper(data.key)}}
                     >
@@ -105,6 +107,27 @@ export default class App extends Component {
             );
         })
     };
+
+    getFrequencies = () => {
+        const frequencies = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0}
+        const possibilities = this.state.possibilities.filter((pos) =>  !pos.hidden);
+        const total = possibilities.length;
+
+        possibilities.forEach((pos) => {
+            pos.possibility.forEach((number) => {
+                frequencies[number] += 1;
+            })
+        })
+
+        return Object.keys(frequencies).map(freq => {
+            const percentage = frequencies[freq] === 0 ? 0 : frequencies[freq] / total
+            return(
+                <Grid item xs={4}>
+                    {freq}: {Math.round(percentage * 100)} % <LinearProgress key={freq} variant="determinate" value={percentage * 100} />
+                </Grid>
+            )
+        })
+    }
 
     render() {
         return (
@@ -118,8 +141,8 @@ export default class App extends Component {
                 <Slider
                     defaultValue={3}
                     step={1}
-                    min={1}
-                    max={5}
+                    min={2}
+                    max={9}
                     marks
                     valueLabelDisplay={'on'}
                     aria-labelledby={"discrete-slider-always"}
@@ -132,7 +155,7 @@ export default class App extends Component {
                     defaultValue={19}
                     step={1}
                     min={3}
-                    max={35}
+                    max={45}
                     marks
                     valueLabelDisplay={'on'}
                     aria-labelledby={"discrete-slider-always"}
@@ -157,6 +180,11 @@ export default class App extends Component {
                 <div style={{flexGrow: 1, paddingTop: 20}}>
                     <Grid container spacing={3}>
                         {this.getCombinationCards()}
+                    </Grid>
+                </div>
+                <div style={{flexGrow: 1, paddingTop: 20}}>
+                    <Grid container spacing={3}>
+                        {this.getFrequencies()}
                     </Grid>
                 </div>
             </Container>
