@@ -1,5 +1,5 @@
 ## Killer Sudoku Combination Finder
-This app can be used to quickly find all possible combinations for a cage. 
+This app can be used to quickly find all possible combinations for a Killer sudoku cage. 
 The user can input the required sum, amount of boxes to find all possible combinations.
 The user could also add required or invalid numbers to filter the result.
 
